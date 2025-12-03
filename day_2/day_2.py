@@ -1,3 +1,32 @@
+def check_repeat_pattern_many(num):
+    # Sliding window approach
+
+    num = str(num)
+    if not num:
+        return 0
+
+    n = len(num)
+
+    # Try every possible pattern length (half length is max)
+    for k in range(1, n//2 + 1):
+        if n % k != 0:
+            continue # we can ignore pattern lengths that can't divide string length
+
+        pattern = num[:k] # Slice num up to current pattern length
+        ok = True
+
+        # Slide through string in windows of size k
+        for i in range(0, n, k):
+            if num[i:i+k] != pattern:
+                ok = False
+                break
+        
+        if ok:
+            print(int(num))
+            return int(num)
+    
+    return 0
+
 def check_repeat_pattern(num):
     num = str(num)
     k = len(num)
@@ -42,6 +71,6 @@ total = 0
 
 for pair in ranges:
     for i in range(pair[0],pair[1]+1):
-        total += check_repeat_pattern(i)
+        total += check_repeat_pattern_many(i)
 
 print(total)
