@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-import matplotlib.colors as mcolors  # <- fix here
+import matplotlib.colors as mcolors 
 import numpy as np
 
-# Define neighbor offsets
 NEIGHBORS = [
     (-1, -1), (0, -1), (1, -1),
     (-1,  0),          (1,  0),
@@ -60,7 +59,6 @@ def generate_frames(grid):
         frames.append(grid_to_array(grid))
     return frames
 
-# Main
 grid = load_grid()
 frames = generate_frames(grid)
 
