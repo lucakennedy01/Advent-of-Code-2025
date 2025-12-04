@@ -4,7 +4,6 @@ import matplotlib.colors as mcolors
 import matplotlib.animation as animation
 import numpy as np
 
-# Define neighbor offsets
 NEIGHBORS = [
     (-1, -1), (0, -1), (1, -1),
     (-1,  0),          (1,  0),
