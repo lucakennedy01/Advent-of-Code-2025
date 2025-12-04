@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-import matplotlib.colors as mcolors  # <- fix here
+import matplotlib.colors as mcolors
+import matplotlib.animation as animation
 import numpy as np
 
 # Define neighbor offsets
@@ -60,12 +61,11 @@ def generate_frames(grid):
         frames.append(grid_to_array(grid))
     return frames
 
-# Main
 grid = load_grid()
 frames = generate_frames(grid)
 
 fig, ax = plt.subplots()
-cmap = mcolors.ListedColormap(['grey', 'black', 'grey'])
+cmap = mcolors.ListedColormap(['black', 'green', 'black'])
 im = ax.imshow(frames[0], cmap=cmap)
 
 def update(frame):
@@ -75,4 +75,10 @@ def update(frame):
 ani = FuncAnimation(fig, update, frames=frames, interval=50, blit=True)
 plt.xticks([])
 plt.yticks([])
+
+writer = animation.PillowWriter(fps = 24,
+                                metadata = dict(artists='Me'),
+                                bitrate=1800)
+ani.save('day_4/day4part2.gif', writer=writer)
+
 plt.show()
